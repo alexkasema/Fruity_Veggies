@@ -59,6 +59,8 @@ def login_view(request):
 
     return render(request, 'userAuth/login.html')
 
+
+
 def logout_view(request):
 
     logout(request)

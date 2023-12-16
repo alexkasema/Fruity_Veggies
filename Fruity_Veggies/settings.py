@@ -42,6 +42,7 @@ INSTALLED_APPS = [
 
     #? third party libraries
     'crispy_forms',
+    'taggit',
 
     #? custom apps
     'core',
