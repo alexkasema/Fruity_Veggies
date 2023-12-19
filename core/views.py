@@ -16,3 +16,10 @@ def index(request):
         'products': products, 'categories': categories, 'vegetables': vegetables, 'fruits': fruits
     }
     return  render(request, 'core/index.html', context)
+
+def category_product_fruits_view(request):
+
+    fruits = Product.objects.filter(category__title = "Fruits")
+
+    context = {'fruits': fruits}
+    return render(request, 'core/category_fruits_list.html', context)
