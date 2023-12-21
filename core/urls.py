@@ -18,4 +18,10 @@ urlpatterns = [
     #! vendor
     path('vendors', views.vendors_list_view, name="vendors"),
     path('vendor/<vid>', views.vendor_details_view, name="vendor"),
+
+     #! tags
+    path('products/tags/<slug:tag_slug>', views.tag_list_view, name="tags"),
+
+    #! add reviews
+    path('reviews/<pid>/', views.review_form_view, name="reviews"),
 ]
