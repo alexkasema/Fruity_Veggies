@@ -149,3 +149,18 @@ def review_form_view(request, pid):
             'average_reviews': average_reviews,
         }
     )
+
+def search_products_view(request):
+
+    query = request.GET.get("q")
+    products = Product.objects.filter(title__icontains=query, product_status = "published")
+    vegetables = Product.objects.filter(category__title = "Vegetables")
+    fruits = Product.objects.filter(category__title = "Fruits")
+
+    #? products = Product.objects.filter(title__icontains=query, description__icontains=query).order_by("-date")
+
+    context = {
+        'products': products,
+        'query': query, 'vegetables': vegetables, 'fruits': fruits
+    }
+    return render(request, 'core/search_products.html', context)
