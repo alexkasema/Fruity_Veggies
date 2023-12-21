@@ -164,3 +164,19 @@ def search_products_view(request):
         'query': query, 'vegetables': vegetables, 'fruits': fruits
     }
     return render(request, 'core/search_products.html', context)
+
+def filter_products_view(request):
+    categories = request.GET.getlist("category[]")
+    vendors = request.GET.getlist("vendor[]")
+
+    products = Product.objects.filter(product_status="published").distinct()
+
+    if len(categories) > 0:
+        products = products.filter(category__id__in=categories).distinct()
+
+    if len(vendors) > 0:
+        products = products.filter(vendor__id__in=vendors).distinct()
+
+    data = render_to_string("core/async/products_list.html", {'products': products})
+
+    return JsonResponse({'data': data})
