@@ -12,7 +12,7 @@
             <h1 class="text-center text-white display-6">Shop Detail</h1>
             <ol class="breadcrumb justify-content-center mb-0">
                 <li class="breadcrumb-item"><a href="#">Home</a></li>
-                <li class="breadcrumb-item"><a href="#">Pages</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'core:products' %}">Products</a></li>
                 <li class="breadcrumb-item active text-white">Shop Detail</li>
             </ol>
         </div>
@@ -36,13 +36,13 @@
                                 <h4 class="fw-bold mb-3">{{product.title}}</h4>
                                 <p class="mb-3">Category: {{product.category.title}}</p>
                                 <h5 class="fw-bold mb-3">{{product.price}} $</h5>
-                                <div class="d-flex mb-4">
+                                <!-- <div class="d-flex mb-4">
                                     <i class="fa fa-star text-secondary"></i>
                                     <i class="fa fa-star text-secondary"></i>
                                     <i class="fa fa-star text-secondary"></i>
                                     <i class="fa fa-star text-secondary"></i>
                                     <i class="fa fa-star"></i>
-                                </div>
+                                </div> -->
                                 <p class="mb-4">{{product.description|truncatechars:50}}</p>
                                 
                                 <div class="input-group quantity mb-5" style="width: 100px;">
