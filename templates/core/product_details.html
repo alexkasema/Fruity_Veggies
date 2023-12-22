@@ -44,7 +44,7 @@
                                     <i class="fa fa-star"></i>
                                 </div> -->
                                 <p class="mb-4">{{product.description|truncatechars:50}}</p>
-                                <input type="hidden" value="1" id="product-quantity" class="product-quantity-{{product.id}}" >
+                                <!-- <input type="hidden" value="1" id="product-quantity" class="product-quantity-{{product.id}}" > -->
                                 <input type="hidden" class="product-pid-{{product.id}}" value="{{product.pid}}">
                                 <input type="hidden" class="product-image-{{product.id}}" value="{{product.image.url}}">
                                 <input type="hidden" class="product-id-{{product.id}}" value="{{product.id}}">
@@ -55,7 +55,8 @@
                                             <i class="fa fa-minus"></i>
                                         </button>
                                     </div>
-                                    <input type="number" id="product-quantity" class="form-control form-control-sm text-center border-0" value="1">
+                                    <!-- <input type="number" value="1" id="product-quantity" class="w-100 product-quantity product-quantity-{{product.id}}"> -->
+                                    <input type="number" id="product-quantity" class=" product-quantity-{{ product.id }} form-control form-control-sm text-center border-0" value="1">
                                     <div class="input-group-btn">
                                         <button class="btn btn-sm btn-plus rounded-circle bg-light border">
                                             <i class="fa fa-plus"></i>

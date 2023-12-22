@@ -218,3 +218,15 @@ def add_to_cart(request):
         'data': request.session['cart_data_obj'],
         'total_cart_items': len(request.session['cart_data_obj'])
     })
+
+#! cart view
+def cart_view(request):
+
+    cart_total_amount = 0
+    if 'cart_data_obj' in request.session:
+        for p_id, item in request.session['cart_data_obj'].items():
+            cart_total_amount += int(item['quantity']) * float(item['price'])
+        return render(request, 'core/cart.html', {'cart_data': request.session['cart_data_obj'], 'total_cart_items': len(request.session['cart_data_obj']), 'cart_total_amount': cart_total_amount})
+    else:
+        messages.warning(request, 'Your cart is empty')
+        return redirect('core:index')
