@@ -92,8 +92,18 @@
                                                     <h4>{{p.title}}</h4>
                                                     <p>{{p.description}}</p>
                                                     <div class="d-flex justify-content-between flex-lg-wrap">
-                                                        <p class="text-dark fs-5 fw-bold mb-0">${{p.price}} / kg</p>
-                                                        <button type="submit" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</button>
+                                                        <input type="hidden" value="1" id="product-quantity" class="product-quantity-{{p.id}}" >
+                                                        <input type="hidden" class="product-pid-{{p.id}}" value="{{p.pid}}">
+                                                        <input type="hidden" class="product-image-{{p.id}}" value="{{p.image.url}}">
+                                                        <input type="hidden" class="product-id-{{p.id}}" value="{{p.id}}">
+                                                        <input type="hidden" class="product-title-{{p.id}}" value="{{p.title}}">
+                                                        
+                                                        <p class="text-dark fs-5 fw-bold mb-0">$
+                                                            <span class="current-product-price-{{p.id}}">{{p.price}}</span> / kg</p>
+                                                        <button id="add-to-cart-btn" data-index="{{p.id}}" class="add-to-cart-btn btn border border-secondary rounded-pill px-3 text-primary">
+                                                            <i class="fa fa-shopping-bag me-2 text-primary"></i> 
+                                                            Add to cart
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -116,10 +126,19 @@
                                                 <div class="text-white bg-secondary px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;">{{v.category.title}}</div>
                                                 <div class="p-4 border border-secondary border-top-0 rounded-bottom">
                                                     <h4>{{v.title}}</h4>
+                                                    <input type="hidden" value="1" id="product-quantity" class="product-quantity-{{v.id}}" >
+                                                    <input type="hidden" class="product-pid-{{v.id}}" value="{{v.pid}}">
+                                                    <input type="hidden" class="product-image-{{v.id}}" value="{{v.image.url}}">
+                                                    <input type="hidden" class="product-id-{{v.id}}" value="{{v.id}}">
+                                                    <input type="hidden" class="product-title-{{v.id}}" value="{{v.title}}">
                                                     <p>{{v.description}}</p>
                                                     <div class="d-flex justify-content-between flex-lg-wrap">
-                                                        <p class="text-dark fs-5 fw-bold mb-0">${{v.price}} / kg</p>
-                                                        <button type="submit" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</button>
+                                                        <p class="text-dark fs-5 fw-bold mb-0">$
+                                                            <span class="current-product-price-{{v.id}}">{{v.price}}</span> / kg</p>
+                                                        <button id="add-to-cart-btn" data-index="{{v.id}}" class=" add-to-cart-btn btn border border-secondary rounded-pill px-3 text-primary">
+                                                            <i class="fa fa-shopping-bag me-2 text-primary"></i> 
+                                                            Add to cart
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -142,10 +161,19 @@
                                                 <div class="text-white bg-secondary px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;">{{f.category.title}}</div>
                                                 <div class="p-4 border border-secondary border-top-0 rounded-bottom">
                                                     <h4>{{f.title}}</h4>
+                                                    <input type="hidden" value="1" id="product-quantity" class="product-quantity-{{f.id}}" >
+                                                    <input type="hidden" class="product-pid-{{f.id}}" value="{{f.pid}}">
+                                                    <input type="hidden" class="product-image-{{f.id}}" value="{{f.image.url}}">
+                                                    <input type="hidden" class="product-id-{{f.id}}" value="{{f.id}}">
+                                                    <input type="hidden" class="product-title-{{f.id}}" value="{{f.title}}">
                                                     <p>{{f.description}}</p>
                                                     <div class="d-flex justify-content-between flex-lg-wrap">
-                                                        <p class="text-dark fs-5 fw-bold mb-0">${{f.price}} / kg</p>
-                                                        <button type="submit" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</button>
+                                                        <p class="text-dark fs-5 fw-bold mb-0">$
+                                                            <span class="current-product-price-{{f.id}}">{{f.price}}</span> / kg</p>
+                                                        <button id="add-to-cart-btn" data-index="{{f.id}}" class=" add-to-cart-btn btn border border-secondary rounded-pill px-3 text-primary">
+                                                            <i class="fa fa-shopping-bag me-2 text-primary"></i> 
+                                                            Add to cart
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -227,10 +255,19 @@
                         <div class="text-white bg-primary px-3 py-1 rounded position-absolute" style="top: 10px; right: 10px;">Vegetable</div>
                         <div class="p-4 rounded-bottom">
                             <h4>{{v.title}}</h4>
+                            <input type="hidden" value="1" id="product-quantity" class="product-quantity-{{v.id}}" >
+                            <input type="hidden" class="product-pid-{{v.id}}" value="{{v.pid}}">
+                            <input type="hidden" class="product-image-{{v.id}}" value="{{v.image.url}}">
+                            <input type="hidden" class="product-id-{{v.id}}" value="{{v.id}}">
+                            <input type="hidden" class="product-title-{{v.id}}" value="{{v.title}}">
                             <p>{{v.description}}</p>
                             <div class="d-flex justify-content-between flex-lg-wrap">
-                                <p class="text-dark fs-5 fw-bold mb-0">${{v.price}} / kg</p>
-                                <button class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</button>
+                                <p class="text-dark fs-5 fw-bold mb-0">$
+                                    <span class="current-product-price-{{v.id}}">{{v.price}}</span> / kg</p>
+                                <button id="add-to-cart-btn" data-index="{{v.id}}" class=" add-to-cart-btn btn border border-secondary rounded-pill px-3 text-primary">
+                                    <i class="fa fa-shopping-bag me-2 text-primary"></i> 
+                                    Add to cart
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -287,15 +324,24 @@
                                 </div>
                                 <div class="col-6">
                                     <a href="#" class="h5">{{p.title}}</a>
-                                    <div class="d-flex my-3">
+                                    <!-- <div class="d-flex my-3">
                                         <i class="fas fa-star text-primary"></i>
                                         <i class="fas fa-star text-primary"></i>
                                         <i class="fas fa-star text-primary"></i>
                                         <i class="fas fa-star text-primary"></i>
                                         <i class="fas fa-star"></i>
-                                    </div>
-                                    <h4 class="mb-3">{{p.price}} $</h4>
-                                    <button class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</button>
+                                    </div> -->
+                                    <input type="hidden" value="1" id="product-quantity" class="product-quantity-{{p.id}}" >
+                                    <input type="hidden" class="product-pid-{{p.id}}" value="{{p.pid}}">
+                                    <input type="hidden" class="product-image-{{p.id}}" value="{{p.image.url}}">
+                                    <input type="hidden" class="product-id-{{p.id}}" value="{{p.id}}">
+                                    <input type="hidden" class="product-title-{{p.id}}" value="{{p.title}}">
+                                    <p class="text-dark fs-5 fw-bold mb-0">$
+                                        <span class="current-product-price-{{p.id}}">{{p.price}}</span> / kg</p>
+                                    <button id="add-to-cart-btn" data-index="{{p.id}}" class=" add-to-cart-btn btn border border-secondary rounded-pill px-3 text-primary">
+                                        <i class="fa fa-shopping-bag me-2 text-primary"></i> 
+                                        Add to cart
+                                    </button>
                                 </div>
                             </div>
                         </div>

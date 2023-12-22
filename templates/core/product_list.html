@@ -182,14 +182,24 @@
                                                 </a>
                                             </div>
                                             <div class="text-white bg-secondary px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;">{{product.category.title}}</div>
-                                            <div class="p-4 border border-secondary border-top-0 rounded-bottom">
-                                                <a href="{% url 'core:product' product.pid %}">
-                                                    <h4>{{product.title}}</h4>
-                                                </a>
-                                                <p>{{product.description}}</p>
-                                                <div class="d-flex justify-content-between flex-lg-wrap">
-                                                    <p class="text-dark fs-5 fw-bold mb-0">${{product.price}} / kg</p>
-                                                    <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
+                                                <div class="p-4 border border-secondary border-top-0 rounded-bottom">
+                                                    <a href="{% url 'core:product' product.pid %}">
+                                                        <h4>{{product.title}}</h4>
+                                                    </a>
+                                                    <p>{{product.description}}</p>
+                                                    <input type="hidden" value="1" id="product-quantity" class="product-quantity-{{product.id}}" >
+                                                    <input type="hidden" class="product-pid-{{product.id}}" value="{{product.pid}}">
+                                                    <input type="hidden" class="product-image-{{product.id}}" value="{{product.image.url}}">
+                                                    <input type="hidden" class="product-id-{{product.id}}" value="{{product.id}}">
+                                                    <input type="hidden" class="product-title-{{product.id}}" value="{{product.title}}">
+
+                                                    <div class="d-flex justify-content-between flex-lg-wrap">
+                                                    <p class="text-dark fs-5 fw-bold mb-0">$
+                                                        <span class="current-product-price-{{product.id}}">{{product.price}}</span> / kg</p>
+                                                    <button id="add-to-cart-btn" data-index="{{product.id}}" class=" add-to-cart-btn btn border border-secondary rounded-pill px-3 text-primary">
+                                                        <i class="fa fa-shopping-bag me-2 text-primary"></i> 
+                                                        Add to cart
+                                                    </button>
                                                 </div>
                                             </div>
                                         </div>

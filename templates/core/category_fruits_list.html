@@ -140,11 +140,20 @@
                                                 <a href="{% url 'core:product' f.pid %}">
                                                     <h4>{{f.title}}</h4>
                                                 </a>
+                                                <input type="hidden" value="1" id="product-quantity" class="product-quantity-{{f.id}}" >
+                                                <input type="hidden" class="product-pid-{{f.id}}" value="{{f.pid}}">
+                                                <input type="hidden" class="product-image-{{f.id}}" value="{{f.image.url}}">
+                                                <input type="hidden" class="product-id-{{f.id}}" value="{{f.id}}">
+                                                <input type="hidden" class="product-title-{{f.id}}" value="{{f.title}}">
                                                 
                                                 <p>{{f.description|truncatechars:150}}</p>
                                                 <div class="d-flex justify-content-between flex-lg-wrap">
-                                                    <p class="text-dark fs-5 fw-bold mb-0">${{f.price}} / kg</p>
-                                                    <button class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</button>
+                                                    <p class="text-dark fs-5 fw-bold mb-0">$
+                                                        <span class="current-product-price-{{f.id}}">{{f.price}}</span> / kg</p>
+                                                    <button id="add-to-cart-btn" data-index="{{f.id}}" class=" add-to-cart-btn btn border border-secondary rounded-pill px-3 text-primary">
+                                                        <i class="fa fa-shopping-bag me-2 text-primary"></i> 
+                                                        Add to cart
+                                                    </button>
                                                 </div>
                                             </div>
                                         </div>
