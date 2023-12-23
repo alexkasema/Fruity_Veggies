@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     #? third party libraries
     'crispy_forms',
     'taggit',
+    'paypal.standard.ipn',
 
     #? custom apps
     'core',
@@ -53,7 +54,11 @@ AUTH_USER_MODEL = 'userAuth.User'
 
 LOGIN_URL = 'userAuth:login'
 
+PAYPAL_RECEIVER_EMAIL = 'sb-r8zvg26633719@business.example.com'
+PAYPAL_TEST = True
+
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
