@@ -1,0 +1,80 @@
+
+    <main id="">
+        <!-- Single Page Header start -->
+        <div class="container-fluid page-header py-5">
+            <h1 class="text-center text-white display-6">Wishlist</h1>
+            <ol class="breadcrumb justify-content-center mb-0">
+                <li class="breadcrumb-item"><a href="{% url 'core:index' %}">Home</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'core:products' %}">Products</a></li>
+                <li class="breadcrumb-item active text-white">You have {{wishlist.count}} items in Wishlist</li>
+            </ol>
+        </div>
+        <!-- Single Page Header End -->
+
+
+        <!-- Cart Page Start -->
+        <div class="container-fluid py-5">
+            <div class="container py-5">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                          <tr>
+                            <th scope="col">Products</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Stock Status</th>
+                            <th scope="col">Action</th>
+                            <th scope="col">Remove</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                            {% for w in wishlist %}
+                            <tr>
+                                <th scope="row">
+                                    <div class="d-flex align-items-center">
+                                        <a href="{% url 'core:product' w.product.pid %}">
+                                            <img src="{{w.product.image.url}}" class="img-fluid me-5 rounded-circle" style="width: 80px; height: 80px;" alt="">
+                                        </a>                      
+                                    </div>
+                                </th>
+                                <td>
+                                    <p class="mb-0 mt-4"><a href="{% url 'core:product' w.product.pid %}">{{w.product.title}}</a></p>
+                                </td>
+                                <td>
+                                    <p class="mb-0 mt-4" >$ <span class="current-product-price-{{w.product.id}}">
+                                        {{w.product.price|floatformat:2}}
+                                    </span>
+                                </p>
+                                </td>
+                                <td>
+                                    <p class="mb-0 mt-4">{% if w.product.in_stock %} <span class="text-primary">In Stock</span> {% else %} <span class="text-danger">Out of Stock</span>  {% endif %}</p>
+                                </td>
+                                <td>
+                                    <input type="hidden" value="1" id="product-quantity" class="product-quantity-{{w.product.id}}" >
+                                    <input type="hidden" class="product-pid-{{w.product.id}}" value="{{w.product.pid}}">
+                                    <input type="hidden" class="product-image-{{w.product.id}}" value="{{w.product.image.url}}">
+                                    <input type="hidden" class="product-id-{{w.product.id}}" value="{{w.product.id}}">
+                                    <input type="hidden" class="product-title-{{w.product.id}}" value="{{w.product.title}}">
+                                    <button id="add-to-cart-btn" data-index="{{w.product.id}}" class="add-to-cart-btn btn border border-secondary rounded-pill px-3 mt-4 text-primary">
+                                        <i class="fa fa-shopping-bag me-2 text-primary"></i> 
+                                        Add to cart
+                                    </button>
+                                </td>
+                                <td>
+                                    <button class=" delete-wishlist-product btn btn-md rounded-circle bg-light border mt-4" data-wishlist-product="{{w.id}}"">
+                                        <i class="fa fa-trash text-danger"></i>
+                                    </button>
+                                </td>
+                            
+                            </tr>
+                            {% empty %}
+                            <tr>
+                                <td><p class="mb-0 mt-4">No Item in wishlist. Add a product to the wishlist to view it.</p></td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>

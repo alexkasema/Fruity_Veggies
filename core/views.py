@@ -1,5 +1,8 @@
 from django.shortcuts import render, get_object_or_404, redirect
+
 from django.http import JsonResponse
+from django.core import serializers
+
 from django.contrib.auth.decorators import login_required
 
 from django.template.loader import render_to_string
@@ -321,7 +324,13 @@ def checkout_view(request):
 
     paypal_payment_button = PayPalPaymentsForm(initial=paypal_dict)
 
-    return render(request, 'core/checkout.html', {'cart_data': request.session['cart_data_obj'], 'total_cart_items': len(request.session['cart_data_obj']), 'cart_total_amount': cart_total_amount, 'paypal_payment_button': paypal_payment_button})
+    try:
+        active_address = Address.objects.filter(user=request.user, status=True)
+    except:
+        messages.warning(request, "There are multiple active addresses, only one should be active")
+        active_address=None
+
+    return render(request, 'core/checkout.html', {'cart_data': request.session['cart_data_obj'], 'total_cart_items': len(request.session['cart_data_obj']), 'cart_total_amount': cart_total_amount, 'paypal_payment_button': paypal_payment_button, 'active_address': active_address})
 
 
 @login_required   
@@ -343,8 +352,22 @@ def dashboard_view(request):
 
     orders = CartOrder.objects.filter(user=request.user).order_by("-id")
 
+    addresses = Address.objects.filter(user=request.user)
+
+    if request.method == "POST":
+        address = request.POST.get("address")
+        mobile = request.POST.get("mobile")
+
+        new_address = Address.objects.create(
+            user = request.user,
+            address = address,
+            mobile = mobile,
+        )
+        messages.success(request, "Address Added successfully")
+        return redirect("core:dashboard")
+
     context = {
-        'orders': orders
+        'orders': orders, 'addresses': addresses,
     }
     return render(request, 'core/dashboard.html', context)
 
@@ -359,3 +382,65 @@ def order_detail_view(request, id):
     }
     return render(request, 'core/order_details.html', context)
 
+def make_address_default_view(request):
+    id = request.GET['id']
+    Address.objects.update(status=False) #! we are making all status to be false because we are about to change it
+    Address.objects.filter(id=id).update(status=True)
+    return JsonResponse({
+        "boolean": True,
+    })
+
+@login_required
+def add_to_wishlist_view(request):
+    id = request.GET['id']
+
+    product = Product.objects.get(id=id)
+
+    context = {}
+
+    wishlist_count = WishList.objects.filter(product=product, user=request.user).count()
+
+    if wishlist_count > 0:
+        context = {
+            "bool": True,
+        }
+    else:
+        new_wishlist = WishList.objects.create(
+            product=product,
+            user=request.user
+        )
+        context = {
+            "bool": True,
+        }
+
+    return JsonResponse(context)
+
+@login_required
+def wishlist_view(request):
+    try:
+        wishlist = WishList.objects.filter(user=request.user)
+    except:
+        wishlist = None
+
+    context = {'wishlist': wishlist}
+    return render(request, 'core/wishlist.html', context)
+
+def remove_from_wishlist(request):
+
+    id = request.GET['id']
+    wishlist = WishList.objects.filter(user=request.user)
+
+    product = WishList.objects.get(id=id)
+    product.delete()
+
+    context = {
+        'bool': True,
+        'wishlist': wishlist,
+    }
+
+    wishlist_json = serializers.serialize('json', wishlist)
+
+    data = render_to_string("core/async/wishlist-list.html", context)
+    return JsonResponse({
+        "data": data, "wishlist": wishlist_json
+    })

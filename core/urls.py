@@ -60,4 +60,16 @@ urlpatterns = [
 
     #! order details url
     path('dashboard/order/<int:id>', views.order_detail_view, name="order-details"),
+
+    #! making address default url
+    path('make-default-address', views.make_address_default_view, name="make-default-address"),
+
+    #! adding to wishlist url
+    path('add-to-wishlist', views.add_to_wishlist_view, name="add-to-wishlist"),
+
+    #! wishlist view url
+    path('wishlist', views.wishlist_view, name="wishlist"),
+
+    #! removing from wishlist view url
+    path('remove-from-wishlist', views.remove_from_wishlist, name="remove-from-wishlist"),
 ]

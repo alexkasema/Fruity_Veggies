@@ -122,15 +122,61 @@
                             </div>
                         </div>
                         <div id="tab-3" class="tab-pane fade show p-0 ">
-                            <div class="row g-4">
-                                <div class="col-lg-12">
-                                    <div class="row g-4">
-                                        <div class="card">
-                                            <div class="card-header">
-                                                <h3>Hello {{request.user|title}}</h3>
+                            <div class="container-fluid py-2">
+                                <div class="container py-2">
+                                    <h1 class="mb-4 text-start">Add Address</h1>
+                                    
+                                        <div class="row g-5">
+                                            <form action="" method="post">
+                                                {% csrf_token %}
+                                                <div class="col-md-12 col-lg-6 col-xl-7">
+                                                    <div class="row">
+                                                        <div class="col-md-12 col-lg-6">
+                                                            <div class="form-item w-100">
+                                                                <label class="form-label my-3">Address<sup>*</sup></label>
+                                                                <input type="text" name="address" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-12 col-lg-6">
+                                                            <div class="form-item w-100">
+                                                                <label class="form-label my-3">Phone<sup>*</sup></label>
+                                                                <input type="text" name="mobile" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                        <div class="row g-4 text-center align-items-center justify-content-center pt-4">
+                                                            <button type="submit" class="btn border-secondary py-3 px-4 text-uppercase w-100 text-primary">Save Address</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                            <div class="col-md-12 col-lg-6 col-xl-5">
+                                                {% for a in addresses %}
+                                                <div class="card mb-5 mb-lg-0">
+                                                    <div class="card-header">
+                                                        <h3 class="mb-0">Address {{forloop.counter}}</h3>
+                                                    </div>
+                                                    
+                                                    <div class="card-body border rounded">
+                                                        <address>
+                                                            <p>{{a.address}}</p>
+                                                            <p>{{a.mobile}}</p>
+                                                            
+                                                        </address>
+                                                        <br>
+                                                        {% if a.status %}
+                                                            <i data-address-id="{{a.id}}" class=" fa fa-check-circle text-success check{{ a.id }} check"></i>
+                                                            <button data-address-id="{{a.id}}" style="display: none;" class="btn border-secondary py-3 px-4 text-uppercase w-100 text-primary make-default-address button{{a.id}} action_btn">Make Default</button>
+                                                        {% else %}
+                                                            <i data-address-id="{{a.id}}" style="display: none;" class=" fa fa-check-circle text-success check{{ a.id }} check"></i>
+                                                            <button data-address-id="{{a.id}}" class="btn border-secondary py-3 px-4 text-uppercase w-100 text-primary make-default-address button{{a.id}} action_btn">Make Default</button>
+                                                        {% endif %}
+                                                    </div>
+                                                    
+                                                </div>
+                                                <br>
+                                                {% endfor %}
                                             </div>
                                         </div>
-                                    </div>
                                 </div>
                             </div>
                         </div>

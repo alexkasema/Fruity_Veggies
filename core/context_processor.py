@@ -1,4 +1,4 @@
-from . models import Product, Category, Vendor
+from . models import Product, Category, Vendor, WishList
 
 from django.db.models import Min, Max
 
@@ -9,6 +9,12 @@ def default(request):
 
     min_max_price = Product.objects.aggregate(Min("price"), Max("price"))
 
+    try:
+        wishlist = WishList.objects.filter(user=request.user)
+    except:
+        
+        wishlist = 0
+
     return {
-        'categories': categories, 'vendors': vendors, 'min_max_price': min_max_price
+        'categories': categories, 'vendors': vendors, 'min_max_price': min_max_price,'wishlist': wishlist
     }

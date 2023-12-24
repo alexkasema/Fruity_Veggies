@@ -100,10 +100,17 @@
                                                         
                                                         <p class="text-dark fs-5 fw-bold mb-0">$
                                                             <span class="current-product-price-{{p.id}}">{{p.price}}</span> / kg</p>
-                                                        <button id="add-to-cart-btn" data-index="{{p.id}}" class="add-to-cart-btn btn border border-secondary rounded-pill px-3 text-primary">
-                                                            <i class="fa fa-shopping-bag me-2 text-primary"></i> 
-                                                            Add to cart
-                                                        </button>
+                                                        
+                                                        <div class="d-flex">
+                                                            <button data-product-item="{{p.id}}" class="add-to-wishlist btn btn border border-secondary rounded-pill px-3 text-primary">
+                                                                <i class="fa fa-heart me-2 text-primary"></i> 
+                                                            </button>
+                                                            <button id="add-to-cart-btn" data-index="{{p.id}}" class="add-to-cart-btn btn border border-secondary rounded-pill px-3 text-primary">
+                                                                <i class="fa fa-shopping-bag me-2 text-primary"></i> 
+                                                                Add to cart
+                                                            </button>
+                                                        </div>
+                                                        
                                                     </div>
                                                 </div>
                                             </div>
