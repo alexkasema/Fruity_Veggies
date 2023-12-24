@@ -17,3 +17,15 @@ class User(AbstractUser):
 
     def __str__(self):
         return self.username
+    
+class ContactUs(models.Model):
+    full_name = models.CharField(max_length=100)
+    email = models.EmailField()
+    message = models.TextField()
+
+    class Meta:
+        verbose_name = "Contact Us"
+        verbose_name_plural = "Contact Us"
+
+    def __str__(self) -> str:
+        return self.full_name

@@ -8,6 +8,7 @@ from django.contrib.auth.decorators import login_required
 from django.template.loader import render_to_string
 
 from . models import Product, Category, Vendor, ProductImages, CartOrder, CartOrderItems, ProductReview, WishList, Address
+from userAuth.models import ContactUs
 
 from . forms import ProductReviewForm
 
@@ -443,4 +444,29 @@ def remove_from_wishlist(request):
     data = render_to_string("core/async/wishlist-list.html", context)
     return JsonResponse({
         "data": data, "wishlist": wishlist_json
+    })
+
+def contact_view(request):
+
+    context = {}
+    return render(request, 'core/contact.html', context)
+
+def ajax_contact(request):
+    full_name = request.GET['full_name']
+    email = request.GET['email']
+    message = request.GET['message']
+
+    contact = ContactUs.objects.create(
+        full_name = full_name,
+        email = email,
+        message = message
+    )
+
+    data = {
+        "bool": True,
+        "message": "Message sent successfully"
+    }
+
+    return JsonResponse({
+        "data": data
     })
