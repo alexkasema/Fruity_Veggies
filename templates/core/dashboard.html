@@ -1,0 +1,144 @@
+{% extends 'partials/base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+    <main id="cart-list">
+        <!-- Single Page Header start -->
+        <div class="container-fluid page-header py-5">
+            <h1 class="text-center text-white display-6">Cart</h1>
+            <ol class="breadcrumb justify-content-center mb-0">
+                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'core:products' %}">Products</a></li>
+                <li class="breadcrumb-item active text-white">You have {{total_cart_items}} Cart items</li>
+            </ol>
+        </div>
+        <!-- Single Page Header End -->
+        <!-- Fruits Shop Start-->
+        <div class="container-fluid fruite py-5">
+            <div class="container py-5">
+                <div class="tab-class text-center">
+                    <div class="row g-4">
+                        <div class="col-lg-12 text-center">
+                            <ul class="nav nav-pills d-inline-flex text-center mb-5">
+                                <li class="nav-item">
+                                    <a class="d-flex m-2 py-2 bg-light rounded-pill active" data-bs-toggle="pill" href="#tab-1">
+                                        <span class="text-dark" style="width: 130px;">Dashboard</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="d-flex m-2 py-2 bg-light rounded-pill " data-bs-toggle="pill" href="#tab-2">
+                                        <span class="text-dark" style="width: 130px;">Orders</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="d-flex py-2 m-2 bg-light rounded-pill" data-bs-toggle="pill" href="#tab-3">
+                                        <span class="text-dark" style="width: 130px;">My Address</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="d-flex m-2 py-2 bg-light rounded-pill" href="{% url 'userAuth:logout' %}">
+                                        <span class="text-dark" style="width: 130px;">Logout</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="tab-content">
+                        <div id="tab-1" class="tab-pane fade show p-0 active">
+                            <div class="row g-4">
+                                <div class="col-lg-12">
+                                    <div class="row g-4">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <h3>Hello {{request.user|title}}</h3>
+                                            </div>
+                                            <div class="card-body">
+                                                <p>
+                                                    From your account Dashboard you can easily manage your account
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="tab-2" class="tab-pane fade show p-0">
+                            <div class="row g-4">
+                                <div class="col-lg-12">
+                                    <div class="row g-4">
+                                        <div class="container py-5">
+                                            <div class="table-responsive">
+                                                <table class="table">
+                                                    <thead>
+                                                      <tr>
+                                                        <th scope="col">Order</th>
+                                                        <th scope="col">Date</th>
+                                                        <th scope="col">Status</th>
+                                                        <th scope="col">Paid Status</th>
+                                                        <th scope="col">Total</th>
+                                                        <th scope="col">Action</th>
+                                                        
+                                                      </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        {% for order in orders %}
+                                                        <tr>
+                                                          
+                                                            <td>
+                                                                <p class="mb-0 mt-4">INVOICE_NO-{{order.id}}</p>
+                                                            </td>
+                                                            <td>
+                                                                <p class="mb-0 mt-4">{{order.order_date}}</p>
+                                                            </td>
+                                                            <td>
+                                                                <p class="mb-0 mt-4">{{order.product_status}}</p>
+                                                            </td>
+                                                            <td>
+                                                                {% if order.paid_status == True %}
+                                                                <p class="mb-0 mt-4 text-primary">✔</p>
+                                                                {% else %}
+                                                                <p class="mb-0 mt-4">X</p>
+                                                                {% endif %}
+                                                            </td>
+                                                            <td>
+                                                                <p class="mb-0 mt-4">{{order.price}}</p>
+                                                            </td>
+                                                            
+                                                            <td>
+                                                                <a href="{% url 'core:order-details' order.id %}" class=" btn border-secondary rounded-pill px-4 py-3 text-primary text-uppercase mb-4 ms-4" >
+                                                                    view
+                                                                </a>
+                                                            </td>
+                                                        </tr>
+                                                        {% endfor %}
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="tab-3" class="tab-pane fade show p-0 ">
+                            <div class="row g-4">
+                                <div class="col-lg-12">
+                                    <div class="row g-4">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <h3>Hello {{request.user|title}}</h3>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>      
+            </div>
+        </div>
+        <!-- Fruits Shop End-->
+    </main>
+
+{% endblock content %}

@@ -1,0 +1,73 @@
+{% extends 'partials/base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+    <main id="cart-list">
+        <!-- Single Page Header start -->
+        <div class="container-fluid page-header py-5">
+            <h1 class="text-center text-white display-6">Order Items</h1>
+            <ol class="breadcrumb justify-content-center mb-0">
+                <li class="breadcrumb-item"><a href="{% url 'core:index' %}">Home</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'core:dashboard' %}">Dashboard</a></li>
+                <li class="breadcrumb-item active text-white">You have {{order_items.count}} order items</li>
+            </ol>
+        </div>
+        <!-- Single Page Header End -->
+
+
+        <!-- Cart Page Start -->
+        <div class="container-fluid py-5">
+            <div class="container py-5">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                          <tr>
+                            <th scope="col">Products Image</th>
+                            <th scope="col">Invoice Number</th>
+                            <th scope="col">Item</th>
+                            <th scope="col">Quantity</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Total</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                            {% for item in order_items %}
+                            <tr>
+                                <th scope="row">
+                                    <div class="d-flex align-items-center">
+                                        
+                                            <img src="{{item.image}}" class="img-fluid me-5 rounded-circle" style="width: 80px; height: 80px;" alt="">
+                                                            
+                                    </div>
+                                </th>
+                                <td>
+                                    <p class="mb-0 mt-4">{{item.invoice_no}}</p>
+                                </td>
+                                <td>
+                                    <p class="mb-0 mt-4">{{item.item}}</p>
+                                </td>
+                                <td>
+                                    <p class="mb-0 mt-4">{{item.quantity}}</p>
+                                </td>
+                                <td>
+                                    <p class="mb-0 mt-4">{{item.price}}</p>
+                                </td>
+                                <td>
+                                    <p class="mb-0 mt-4">{{item.total}}</p>
+                                </td>
+                            
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="mt-5">
+                    <a href="{% url 'core:dashboard' %}" class="btn border-secondary rounded-pill px-4 py-3 text-primary" type="button">Back to Dashboard</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+{% endblock content %}
