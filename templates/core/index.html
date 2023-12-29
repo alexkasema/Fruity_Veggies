@@ -89,7 +89,9 @@
                                                 </div>
                                                 <div class="text-white bg-secondary px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;">{{p.category.title}}</div>
                                                 <div class="p-4 border border-secondary border-top-0 rounded-bottom">
-                                                    <h4>{{p.title}}</h4>
+                                                    <a href="{% url 'core:product' p.pid %}">
+                                                        <h4>{{p.title}}</h4>
+                                                    </a>                                                   
                                                     <p>{{p.description}}</p>
                                                     <div class="d-flex justify-content-between flex-lg-wrap">
                                                         <input type="hidden" value="1" id="product-quantity" class="product-quantity-{{p.id}}" >
@@ -128,24 +130,35 @@
                                         <div class="col-md-6 col-lg-4 col-xl-3">
                                             <div class="rounded position-relative fruite-item">
                                                 <div class="fruite-img">
-                                                    <img src="{{v.image.url}}" class="img-fluid w-100 rounded-top" alt="">
+                                                    <a href="{% url 'core:product' v.pid %}">
+                                                        <img src="{{v.image.url}}" class="img-fluid w-100 rounded-top" alt="">
+                                                    </a>
+                                                    
                                                 </div>
                                                 <div class="text-white bg-secondary px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;">{{v.category.title}}</div>
                                                 <div class="p-4 border border-secondary border-top-0 rounded-bottom">
-                                                    <h4>{{v.title}}</h4>
-                                                    <input type="hidden" value="1" id="product-quantity" class="product-quantity-{{v.id}}" >
-                                                    <input type="hidden" class="product-pid-{{v.id}}" value="{{v.pid}}">
-                                                    <input type="hidden" class="product-image-{{v.id}}" value="{{v.image.url}}">
-                                                    <input type="hidden" class="product-id-{{v.id}}" value="{{v.id}}">
-                                                    <input type="hidden" class="product-title-{{v.id}}" value="{{v.title}}">
+                                                    <a href="{% url 'core:product' v.pid %}">
+                                                        <h4>{{v.title}}</h4>
+                                                    </a>
+                                                    
                                                     <p>{{v.description}}</p>
                                                     <div class="d-flex justify-content-between flex-lg-wrap">
+                                                        <input type="hidden" value="1" id="product-quantity" class="product-quantity-{{v.id}}" >
+                                                        <input type="hidden" class="product-pid-{{v.id}}" value="{{v.pid}}">
+                                                        <input type="hidden" class="product-image-{{v.id}}" value="{{v.image.url}}">
+                                                        <input type="hidden" class="product-id-{{v.id}}" value="{{v.id}}">
+                                                        <input type="hidden" class="product-title-{{v.id}}" value="{{v.title}}">
                                                         <p class="text-dark fs-5 fw-bold mb-0">$
-                                                            <span class="current-product-price-{{v.id}}">{{v.price}}</span> / kg</p>
-                                                        <button id="add-to-cart-btn" data-index="{{v.id}}" class=" add-to-cart-btn btn border border-secondary rounded-pill px-3 text-primary">
-                                                            <i class="fa fa-shopping-bag me-2 text-primary"></i> 
-                                                            Add to cart
-                                                        </button>
+                                                            <span>{{v.price}}</span> / kg</p>
+                                                        <div class="d-flex">
+                                                            <button data-product-item="{{v.id}}" class="add-to-wishlist btn btn border border-secondary rounded-pill px-3 text-primary">
+                                                                <i class="fa fa-heart me-2 text-primary"></i> 
+                                                            </button>
+                                                            <button id="add-to-cart-btn" data-index="{{v.id}}" class="add-to-cart-btn btn border border-secondary rounded-pill px-3 text-primary">
+                                                                <i class="fa fa-shopping-bag me-2 text-primary"></i> 
+                                                                Add to cart
+                                                            </button>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -163,24 +176,35 @@
                                         <div class="col-md-6 col-lg-4 col-xl-3">
                                             <div class="rounded position-relative fruite-item">
                                                 <div class="fruite-img">
-                                                    <img src="{{f.image.url}}" class="img-fluid w-100 rounded-top" alt="">
+                                                    <a href="{% url 'core:product' f.pid %}">
+                                                        <img src="{{f.image.url}}" class="img-fluid w-100 rounded-top" alt="">
+                                                    </a>
+                                                    
                                                 </div>
                                                 <div class="text-white bg-secondary px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;">{{f.category.title}}</div>
                                                 <div class="p-4 border border-secondary border-top-0 rounded-bottom">
-                                                    <h4>{{f.title}}</h4>
-                                                    <input type="hidden" value="1" id="product-quantity" class="product-quantity-{{f.id}}" >
-                                                    <input type="hidden" class="product-pid-{{f.id}}" value="{{f.pid}}">
-                                                    <input type="hidden" class="product-image-{{f.id}}" value="{{f.image.url}}">
-                                                    <input type="hidden" class="product-id-{{f.id}}" value="{{f.id}}">
-                                                    <input type="hidden" class="product-title-{{f.id}}" value="{{f.title}}">
+                                                    <a href="{% url 'core:product' f.pid %}">
+                                                        <h4>{{f.title}}</h4>
+                                                    </a>
+                                                   
                                                     <p>{{f.description}}</p>
                                                     <div class="d-flex justify-content-between flex-lg-wrap">
                                                         <p class="text-dark fs-5 fw-bold mb-0">$
-                                                            <span class="current-product-price-{{f.id}}">{{f.price}}</span> / kg</p>
-                                                        <button id="add-to-cart-btn" data-index="{{f.id}}" class=" add-to-cart-btn btn border border-secondary rounded-pill px-3 text-primary">
-                                                            <i class="fa fa-shopping-bag me-2 text-primary"></i> 
-                                                            Add to cart
-                                                        </button>
+                                                            <span>{{f.price}}</span> / kg</p>
+                                                        <input type="hidden" value="1" id="product-quantity" class="product-quantity-{{f.id}}" >
+                                                        <input type="hidden" class="product-pid-{{f.id}}" value="{{f.pid}}">
+                                                        <input type="hidden" class="product-image-{{f.id}}" value="{{f.image.url}}">
+                                                        <input type="hidden" class="product-id-{{f.id}}" value="{{f.id}}">
+                                                        <input type="hidden" class="product-title-{{f.id}}" value="{{f.title}}">
+                                                        <div class="d-flex">
+                                                            <button data-product-item="{{f.id}}" class="add-to-wishlist btn btn border border-secondary rounded-pill px-3 text-primary">
+                                                                <i class="fa fa-heart me-2 text-primary"></i> 
+                                                            </button>
+                                                            <button id="add-to-cart-btn" data-index="{{f.id}}" class="add-to-cart-btn btn border border-secondary rounded-pill px-3 text-primary">
+                                                                <i class="fa fa-shopping-bag me-2 text-primary"></i> 
+                                                                Add to cart
+                                                            </button>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -254,27 +278,24 @@
                     {% for v in vegetables %}
                     <div class="border border-primary rounded position-relative vesitable-item">
                         <div class="vesitable-img">
-                            <a href="">
+                            <a href="{% url 'core:product' v.pid %}">
                                 <img src="{{v.image.url}}" class="img-fluid w-100 rounded-top" alt="">
                             </a>
                             
                         </div>
                         <div class="text-white bg-primary px-3 py-1 rounded position-absolute" style="top: 10px; right: 10px;">Vegetable</div>
                         <div class="p-4 rounded-bottom">
-                            <h4>{{v.title}}</h4>
-                            <input type="hidden" value="1" id="product-quantity" class="product-quantity-{{v.id}}" >
-                            <input type="hidden" class="product-pid-{{v.id}}" value="{{v.pid}}">
-                            <input type="hidden" class="product-image-{{v.id}}" value="{{v.image.url}}">
-                            <input type="hidden" class="product-id-{{v.id}}" value="{{v.id}}">
-                            <input type="hidden" class="product-title-{{v.id}}" value="{{v.title}}">
+                            <a href="{% url 'core:product' v.pid %}">
+                                <h4>{{v.title}}</h4>
+                            </a>
                             <p>{{v.description}}</p>
                             <div class="d-flex justify-content-between flex-lg-wrap">
                                 <p class="text-dark fs-5 fw-bold mb-0">$
-                                    <span class="current-product-price-{{v.id}}">{{v.price}}</span> / kg</p>
-                                <button id="add-to-cart-btn" data-index="{{v.id}}" class=" add-to-cart-btn btn border border-secondary rounded-pill px-3 text-primary">
-                                    <i class="fa fa-shopping-bag me-2 text-primary"></i> 
-                                    Add to cart
-                                </button>
+                                    <span>{{v.price}}</span> / kg</p>
+                                <a href="{% url 'core:product' v.pid %}" class="btn border border-secondary rounded-pill px-3 text-primary">
+                                    <i class="fa fa-shop me-2 text-primary"></i> 
+                                    view product
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -327,10 +348,12 @@
                         <div class="p-4 rounded bg-light">
                             <div class="row align-items-center">
                                 <div class="col-6">
-                                    <img src="{{p.image.url}}" class="img-fluid rounded-circle w-100" alt="">
+                                    <a href="{% url 'core:product' p.pid %}">
+                                        <img src="{{p.image.url}}" class="img-fluid rounded-circle w-100" alt="">
+                                    </a>                                  
                                 </div>
                                 <div class="col-6">
-                                    <a href="#" class="h5">{{p.title}}</a>
+                                    <a href="{% url 'core:product' p.pid %}" class="h5">{{p.title}}</a>
                                     <!-- <div class="d-flex my-3">
                                         <i class="fas fa-star text-primary"></i>
                                         <i class="fas fa-star text-primary"></i>
@@ -338,17 +361,13 @@
                                         <i class="fas fa-star text-primary"></i>
                                         <i class="fas fa-star"></i>
                                     </div> -->
-                                    <input type="hidden" value="1" id="product-quantity" class="product-quantity-{{p.id}}" >
-                                    <input type="hidden" class="product-pid-{{p.id}}" value="{{p.pid}}">
-                                    <input type="hidden" class="product-image-{{p.id}}" value="{{p.image.url}}">
-                                    <input type="hidden" class="product-id-{{p.id}}" value="{{p.id}}">
-                                    <input type="hidden" class="product-title-{{p.id}}" value="{{p.title}}">
+                                    
                                     <p class="text-dark fs-5 fw-bold mb-0">$
-                                        <span class="current-product-price-{{p.id}}">{{p.price}}</span> / kg</p>
-                                    <button id="add-to-cart-btn" data-index="{{p.id}}" class=" add-to-cart-btn btn border border-secondary rounded-pill px-3 text-primary">
-                                        <i class="fa fa-shopping-bag me-2 text-primary"></i> 
-                                        Add to cart
-                                    </button>
+                                        <span>{{p.price}}</span> / kg</p>
+                                    <a href="{% url 'core:product' p.pid %}" class=" btn border border-secondary rounded-pill px-3 text-primary">
+                                        <i class="fa fa-shop me-2 text-primary"></i> 
+                                        view product
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -464,7 +483,7 @@
                         <div class="position-relative">
                             <i class="fa fa-quote-right fa-2x text-secondary position-absolute" style="bottom: 30px; right: 0;"></i>
                             <div class="mb-4 pb-4 border-bottom border-secondary">
-                                <p class="mb-0">Lorem Ipsum is simply dummy text of the printing Ipsum has been the industry's standard dummy text ever since the 1500s,
+                                <p class="mb-0">The mangoes were very juicy and sweet.
                                 </p>
                             </div>
                             <div class="d-flex align-items-center flex-nowrap">
@@ -473,7 +492,7 @@
                                 </div>
                                 <div class="ms-4 d-block">
                                     <h4 class="text-dark">Client Name</h4>
-                                    <p class="m-0 pb-3">Profession</p>
+                                    <!-- <p class="m-0 pb-3">Profession</p> -->
                                     <div class="d-flex pe-5">
                                         <i class="fas fa-star text-primary"></i>
                                         <i class="fas fa-star text-primary"></i>
