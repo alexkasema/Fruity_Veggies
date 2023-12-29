@@ -2,11 +2,8 @@
 *.pot
 *.pyc
 core/__pycache__/
-core/migrations/
-userAuth/migrations/
 userAuth/__pycache__/
 local_settings.py
 db.sqlite3
 db.sqlite3-journal
-media
 static/img

@@ -46,7 +46,7 @@ Install the requirements :
 
 ## Running the App
 
-o run the App, we use :
+To run the App, we use :
 
 ```bash
   python manage.py runserver
